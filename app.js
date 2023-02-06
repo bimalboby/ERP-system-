@@ -4,8 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var userRouter = require('./routes/user');
-var adminRouter = require('./routes/admin');
+var student = require('./routes/student');
+var teacher = require('./routes/teacher');
+var principal = require('./routes/principal');
 var hbs = require('express-handlebars')
 
 var app = express();
@@ -17,7 +18,7 @@ console.log('________________________________________________________ SEVER UP O
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-app.engine('hbs',hbs({extname:'hbs',defaultLayout:'layout',layoutDir:__dirname+'/views/layouts',partialsDir:__dirname+'/views/partials'}))
+// app.engine('hbs',hbs({extname:'hbs',defaultLayout:'layout',layoutDir:__dirname+'/views/layouts',partialsDir:__dirname+'/views/partials'}))
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -29,8 +30,9 @@ db.connect((err)=>{
   if(err) console.log('connection failed'+err);
   else console.log('connected to database');
 })
-app.use('/', userRouter);
-app.use('/admin',adminRouter);
+app.use('/', student);
+app.use('/teacher',teacher);
+app.use('/principal',principal);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
