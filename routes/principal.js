@@ -8,21 +8,28 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
  console.log("principal");
+ res.render('login.hbs')
 });
 
-router.get('/login', function(req, res, next) {
-   
-    let loginStatus=principal.doLogin({email:"principal007@gmail.com",password:"12345"})
+router.post('/login', function(req, res, next) {
+         console.log(req.body);
+    let loginStatus=principal.doLogin(req.body)
         if(loginStatus==true)
         {
             console.log("SUCCESS");
+            res.render('index.hbs')
         }else
         {
-            console.log("FAIL");
+            console.log("LOGIN FAILED");
         }
+
 
    });
    router.get('/add-student', function(req, res, next) {
+    console.log("principal");
+    res.render('add-student.hbs')
+   });
+   router.post('/add-student', function(req, res, next) {
     let obj={
         regNo:"rnumber",
         email:"email",
