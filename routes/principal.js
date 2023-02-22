@@ -16,8 +16,16 @@ router.post('/login', function(req, res, next) {
     let loginStatus=principal.doLogin(req.body)
         if(loginStatus==true)
         {
+            principal.viewStudents().then((students)=>{
+                principal.viewTeachers().then((teachers)=>{
+                    res.render('principal.hbs',{students:students.length,teachers:teachers.length})
+
+                })
+              
+                
+            })
             console.log("SUCCESS");
-            res.render('principal.hbs')
+       
         }else
         {
             console.log("LOGIN FAILED");
@@ -76,21 +84,19 @@ router.post('/login', function(req, res, next) {
    });
 
    router.post('/data-to-create-class', async(req,res)=> {
-    let students=await principal.getAllStudentsWithoutClass(req.body.year)
-    let teachers=await principal.getAllTeachersWithoutClass()
-    console.log(students);
-    console.log(teachers);
-    let obj={
-        students:students,
-        teachers:teachers
-    }
-    res.render('view-students-teachers.hbs',students)
+    let s=await principal.getAllStudentsWithoutClass(req.body.year)
+    let t=await principal.getAllTeachersWithoutClass()
+    console.log(s);
+    console.log(t);
+ 
+    res.render('view-students-teachers.hbs',{students:s,teachers:t})
     
    });
    router.post('/create-class', (req,res)=> {
-   principal.createClass(obj).then(async(response)=>{
-    await principal.updateStudentClass()
-    await principal.updateTeacherClass()
+    console.log(req.body);
+   principal.createClass(req.body).then(async(response)=>{
+    await principal.updateStudentClass(req.body)
+    await principal.updateTeacherClass(req.body)
    })
     
    });

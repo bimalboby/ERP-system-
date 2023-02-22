@@ -26,6 +26,11 @@ let loginStatus=teacher.doLogin(req.body)
 
 
 });
+router.get('/attendance-form', function(req, res, next) {
+
+  res.render('attendance-form.hbs')
+    
+    });
  
  
 module.exports = router;

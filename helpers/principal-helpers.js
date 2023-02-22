@@ -82,9 +82,9 @@ module.exports={
     },
     getAllStudentsWithoutClass:(years)=>{
         return new Promise(async(resolve,reject)=>{
-          await db.get().collection(collection.STUDENT_DATA).find({ class : "nil",year:years}).toArray().then((students)=>
+          await db.get().collection(collection.STUDENT_DATA).find({ class : "nil",year:parseInt(years)}).toArray().then((students)=>
            {
-       
+         console.log(students);
             resolve(students)
            })
         })
@@ -102,9 +102,9 @@ module.exports={
     updateStudentClass:(data)=>{
         return new Promise(async(resolve,reject)=>{
 
-            for (let i = 0; i < data.reg.length; i++) 
+            for (let i = 0; i < data.students.length; i++) 
             {
-                await db.get().collection(collection.STUDENT_DATA).updateMany({class: "nil",regNo:data.reg[i]}, {$set:{class: data.className}}).then((response)=>
+                await db.get().collection(collection.STUDENT_DATA).updateOne({regNo:parseInt(data.students[i])}, {$set:{"class": data.section}}).then((response)=>
                 {
                 console.log(response);
                 resolve(response)
@@ -131,10 +131,10 @@ module.exports={
         let obj=
         {
             classID:rnumber,
-            teacherID:data.teacherID,
+            teacherID:parseInt(data.teacher),
             year:data.year,
             section:data.section,
-            studentsID:data.studentsID
+            studentsID:parseInt(data.students)
         }
         db.get().collection(collection.CLASS).insertOne(obj).then((data)=>{
 
