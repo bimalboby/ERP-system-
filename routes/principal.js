@@ -8,7 +8,7 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
  console.log("principal");
- res.render('login.hbs')
+ res.render('principal-login.hbs')
 });
 
 router.post('/login', function(req, res, next) {
@@ -17,10 +17,11 @@ router.post('/login', function(req, res, next) {
         if(loginStatus==true)
         {
             console.log("SUCCESS");
-            res.render('index.hbs')
+            res.render('principal.hbs')
         }else
         {
             console.log("LOGIN FAILED");
+        
         }
 
 
@@ -30,40 +31,63 @@ router.post('/login', function(req, res, next) {
     res.render('add-student.hbs')
    });
    router.post('/add-student', function(req, res, next) {
-    let obj={
-        regNo:"rnumber",
-        email:"email",
-        ph:"ph",
-        year:2,
-        parentph:"parentph",
-        fatherName:"fatherName",
-        motherName:"motherName",
-        address:"address",
+    console.log(req.body);
 
-
-    }
-    principal.addpeople(obj,"student")
+    principal.addpeople(req.body,"student")
+    res.redirect('/')
    });
-   router.get('/add-teacher', function(req, res, next) {
+   router.get('/view-students', function(req, res, next) {
+    principal.viewStudents().then((data)=>{
+        console.log(data[0]);
+        res.render('view-students.hbs',{students:data})
+    })
+
+   
+   });
+   router.get('/view-teachers', function(req, res, next) {
+    principal.viewTeachers().then((data)=>{
+        console.log(data[0]);
+        res.render('view-teachers.hbs',{teachers:data})
+    })
+
+ 
+   });
+   router.get('/add-teacher-form', function(req, res, next) {
+
+    res.render('add-teacher.hbs')
+   });
+   router.post('/add-teacher', function(req, res, next) {
+    console.log(req.body);
     let obj={
-        subjects:[],
-        email:"userData.email",
-        ph:"userData.ph",
-        address:"userData.address",
+        subject:req.body.subject,
+        name:req.body.name,
+        email:req.body.email,
+        ph:req.body.ph,
+        address:req.body.address,
+        genter:req.body.genter
 
 
     }
     principal.addpeople(obj,"teacher")
    });
+   router.get('/create-class-form', function(req, res, next) {
 
-   router.get('/data-to-create-class', async(req,res)=> {
-    let students=await principal.getAllStudentsWithoutClass(2)
+    res.render('create-class-form.hbs')
+   });
+
+   router.post('/data-to-create-class', async(req,res)=> {
+    let students=await principal.getAllStudentsWithoutClass(req.body.year)
     let teachers=await principal.getAllTeachersWithoutClass()
     console.log(students);
     console.log(teachers);
+    let obj={
+        students:students,
+        teachers:teachers
+    }
+    res.render('view-students-teachers.hbs',students)
     
    });
-   router.get('/create-class', (req,res)=> {
+   router.post('/create-class', (req,res)=> {
    principal.createClass(obj).then(async(response)=>{
     await principal.updateStudentClass()
     await principal.updateTeacherClass()

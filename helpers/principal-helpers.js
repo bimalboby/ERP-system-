@@ -32,10 +32,12 @@ module.exports={
                 dataLocation=collection.TEACHER_DATA
                 obj={
                    
-                    subjects:[],
+                    subjects:userData.subject,
+                    name:userData.name,
                     regNo:rnumber,
                     email:userData.email,
-                    ph:userData.ph,
+                    ph:parseInt(userData.ph),
+                    genter:userData.genter,
                     address:userData.address,
                     classTeacher:false
     
@@ -47,12 +49,14 @@ module.exports={
                 dataLocation=collection.STUDENT_DATA
                  obj={
                     regNo:rnumber,
+                    name:userData.name,
+                    genter:userData.genter,
                     class:"nil",
-                    year:userData.year,
+                    year:parseInt(userData.year),
                     subject:{},
                     email:userData.email,
-                    ph:userData.ph,
-                    parentph:userData.parentph,
+                    ph:parseInt(userData.ph),
+                    parentph:parseInt(userData.parentph),
                     fatherName:userData.fatherName,
                     motherName:userData.motherName,
                     address:userData.address,
@@ -140,6 +144,28 @@ module.exports={
         })
     
         })
+        },
+        viewStudents:()=>{
+            return new Promise(async(resolve,reject)=>{
+                await db.get().collection(collection.STUDENT_DATA).find().toArray().then((students)=>
+                {
+    
+                    // console.log(students);
+                resolve(students)
+                })
+            })
+
+        },
+        viewTeachers:()=>{
+            return new Promise(async(resolve,reject)=>{
+                await db.get().collection(collection.TEACHER_DATA).find().toArray().then((teachers)=>
+                {
+    
+                    // console.log(students);
+                resolve(teachers)
+                })
+            })
+
         },
 
         applyLeave:(data)=>{
