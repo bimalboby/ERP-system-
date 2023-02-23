@@ -18,7 +18,11 @@ router.post('/login', function(req, res, next) {
         {
             principal.viewStudents().then((students)=>{
                 principal.viewTeachers().then((teachers)=>{
-                    res.render('principal.hbs',{students:students.length,teachers:teachers.length})
+                    principal.viewAllLeaves().then((l)=>{
+        
+                    
+                    res.render('principal.hbs',{students:students.length,teachers:teachers.length,leaves:l})
+                })
 
                 })
               
@@ -100,6 +104,21 @@ router.post('/login', function(req, res, next) {
    })
     
    });
+   router.get('/accept-leave/:id', function(req, res, next) {
+
+     console.log(req.params.id);
+     principal.approveLeave(req.params.id)
+  
+     principal.sentEmail("bimal.boby@btech.christuniversity.in","Leave Status","Your leave request has been approved")
+   });
+
+   router.get('/decline-leave/:id', function(req, res, next) {
+
+    console.log(req.params.id);
+    principal.approveLeave(req.params.id)
+ 
+    principal.sentEmail("bimal.boby@btech.christuniversity.in","Leave Status","Sorry..Your leave request has been Rejected")
+  });
 
 
 

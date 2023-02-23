@@ -30,7 +30,7 @@ db.connect((err)=>{
   if(err) console.log('connection failed'+err);
   else console.log('connected to database');
 })
-app.use('/', student);
+app.use('/student', student);
 app.use('/teacher',teacher);
 app.use('/principal',principal);
 

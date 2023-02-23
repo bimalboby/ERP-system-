@@ -1,7 +1,9 @@
 var db =require('../config/connection')
 var collection=require('../config/collections')
-
+const { ObjectId } = require('mongodb');
 const bcrypt=require('bcrypt')
+const { ObjectID } = require('bson')
+var nodemailer = require('nodemailer');
 
 module.exports={
 
@@ -173,7 +175,7 @@ module.exports={
                     let obj={
                         from:data.from,
                         till:data.till,
-                        reason:data.reason,
+                        reason:data.message,
                         approve:false
                     }
              
@@ -187,13 +189,24 @@ module.exports={
               
             })
             },
-        approveOrRejectLeave:(data,approvel)=>{
+            viewAllLeaves:()=>{
+                return new Promise(async(resolve,reject)=>{
+                    console.log("called");
+                  await db.get().collection(collection.LEAVE).find({ approve : false}).toArray().then((leaves)=>
+                   {
+                 console.log(leaves);
+                    resolve(leaves)
+                   })
+                })
+                },
+        approveLeave:(id)=>{
             return new Promise(async(resolve,reject)=>{
+                console.log(id);
                 
                 
-                await db.get().collection(collection.LEAVE).updateOne({_id:objectId(id)}, {
+                await db.get().collection(collection.LEAVE).updateOne({_id:ObjectId(id)}, {
                     $set:{
-                        "approve":approvel
+                        "approve":true
                     }
                 }).then((response)=>
                     {
@@ -205,6 +218,50 @@ module.exports={
                 
             })
             },
+            rejectLeave:(id)=>{
+                return new Promise(async(resolve,reject)=>{
+                    console.log(id);
+                    
+                    
+                    await db.get().collection(collection.LEAVE).updateOne({_id:ObjectId(id)}, {
+                        $set:{
+                            "approve":"rejected"
+                        }
+                    }).then((response)=>
+                        {
+                        console.log(response);
+                        resolve(response)
+                        })
+                        
+                    
+                    
+                })
+                },
+            sentEmail:(toMail,subject,body)=>{
+                var transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                  user: 'bimalboby007@gmail.com',
+                  pass: 'zgliqvavgdhnocdj'
+                }
+              });
+              
+              var mailOptions = {
+                from: 'bimalboby007@gmail.com',
+                to: toMail,
+                subject: subject,
+                text: body
+              };
+              
+              transporter.sendMail(mailOptions, function(error, info){
+                if (error) {
+                  console.log(error);
+                } else {
+                  console.log('Email sent: ' + info.response);
+                }
+              });
+                },
+        
 
 
 

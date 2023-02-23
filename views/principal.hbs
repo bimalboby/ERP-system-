@@ -153,7 +153,7 @@
 						  <a href="/principal/create-class-form" class="active">
 						<i class='bx bxs-dashboard icon' ></i> Create Class
 					</a>
-					  <a href="/principal/create-subject" class="active">
+					  <a href="#" class="active">
 						<i class='bx bxs-dashboard icon' ></i> Create subject
 					</a>
 		
@@ -204,7 +204,7 @@
 								</div>
 								<div class="col-8">
 									<p>Class</p>
-									<h5>30</h5>
+									<h5>--</h5>
 								</div>
 							</div>
 						</div>
@@ -252,11 +252,46 @@
 				<br>
 				<br>
 				<br>
-				
-
-				<div class="col-md-12">
+			
 					<div class="card">
 						<div class="card-header">
+							<h4>Applied leaves</h4>
+						</div>
+						<div class="card-body"> 
+						<div class="table-responsive"> 
+						<table class="table table-striped">
+							<thead>
+
+							  <tr>
+								<th scope="col">From</th>
+								<th scope="col">Till</th>
+								<th scope="col">Message</th>
+				
+                                	<th scope="col">Approvel</th>
+
+								
+							  </tr>
+							</thead>
+							<tbody>
+                                {{#each leaves}}
+							  <tr>
+								<th scope="row">{{this.from}}	</th>
+								<td>{{this.till}}</td>
+								<td>{{this.reason}}</td>
+                              
+					
+							
+								<td><a href="/principal/accept-leave/{{this._id}}" class="btn btn-success" role="button">Accept</a><a href="/principal/decline-leave/{{this._id}}" class="btn btn-danger" role="button">Decline</a></td>
+							  </tr>
+                              {{/each}}
+
+							 
+							</tbody>
+						  </table>
+						  <div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+						
 							<h4>Notifications</h4>
 							<P>Merit Scholarship (2022) - (Undergraduate Programme Only)
 A student with a brilliant academic record, having secured First Class in all the previous semesters
@@ -273,6 +308,15 @@ and who is actively associated with Ce</p>
 						</div>
 					</div>
 				</div>
+						  </div>
+						</div>
+					</div>
+				</div>
+
+		
+
+
+				
 
 		   </div>
 		</div>
@@ -283,7 +327,7 @@ and who is actively associated with Ce</p>
 	<footer>
 		<div class="footer">
 			<div class="float-start">
-				
+				<p>2023 &copy; St Philomina</p>
 			</div>
 				<div class="float-end">
 				
