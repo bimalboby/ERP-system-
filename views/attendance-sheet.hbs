@@ -182,7 +182,8 @@
 				<div class="col-md-12">
 					<div class="card">
 						<div class="card-header">
-							<h4>Students</h4>
+							<h4>Subject : {{d.subjectName}}</h4>  	<h4>Class : {{d.c}}</h4>
+              <hr>
 						</div>
 						<div class="card-body"> 
 						<div class="table-responsive"> 
@@ -238,84 +239,16 @@
     </tr>
   </thead>
   <tbody>
+    {{#each students}}
       <tr class="student">
-      <td class="name-col">Alen</td>
+      <td class="name-col">{{this.Reg}}</td>
+       <td class="name-col">{{this.Name}}</td>
       <td class="attend-col"><input type="checkbox"></td>
      
 
     </tr>
-     <tr class="student">
-      <td class="name-col">George</td>
-      <td class="attend-col"><input type="checkbox"></td>
-    </tr>
-
-       <tr class="student">
-      <td class="name-col">Alex</td>
-      <td class="attend-col"><input type="checkbox"></td>
-    </tr>
-      <tr class="student">
-      <td class="name-col">Amith</td>
-      <td class="attend-col"><input type="checkbox"></td>
-    </tr>
-       <tr class="student">
-      <td class="name-col">Ajay</td>
-      <td class="attend-col"><input type="checkbox"></td>
-    </tr>
-         <tr class="student">
-      <td class="name-col">Abhinav</td>
-      <td class="attend-col"><input type="checkbox"></td>
-    </tr>
-        <tr class="student">
-      <td class="name-col">Anoal</td>
-      <td class="attend-col"><input type="checkbox"></td>
-    </tr>
-          <tr class="student">
-      <td class="name-col">Arpithan</td>
-      <td class="attend-col"><input type="checkbox"></td>
-    </tr>
-           <tr class="student">
-      <td class="name-col">Abhinav</td>
-      <td class="attend-col"><input type="checkbox"></td>
-    </tr>
-    <tr class="student">
-      <td class="name-col">Alen</td>
-      <td class="attend-col"><input type="checkbox"></td>
-     
-
-    </tr>
-     <tr class="student">
-      <td class="name-col">George</td>
-      <td class="attend-col"><input type="checkbox"></td>
-    </tr>
-
-       <tr class="student">
-      <td class="name-col">Alex</td>
-      <td class="attend-col"><input type="checkbox"></td>
-    </tr>
-      <tr class="student">
-      <td class="name-col">Amith</td>
-      <td class="attend-col"><input type="checkbox"></td>
-    </tr>
-       <tr class="student">
-      <td class="name-col">Ajay</td>
-      <td class="attend-col"><input type="checkbox"></td>
-    </tr>
-         <tr class="student">
-      <td class="name-col">Abhinav</td>
-      <td class="attend-col"><input type="checkbox"></td>
-    </tr>
-        <tr class="student">
-      <td class="name-col">Anoal</td>
-      <td class="attend-col"><input type="checkbox"></td>
-    </tr>
-          <tr class="student">
-      <td class="name-col">Arpithan</td>
-      <td class="attend-col"><input type="checkbox"></td>
-    </tr>
-           <tr class="student">
-      <td class="name-col">Abhinav</td>
-      <td class="attend-col"><input type="checkbox"></td>
-    </tr>
+    {{/each}}
+   
   </tbody>
 </table>
 <style>

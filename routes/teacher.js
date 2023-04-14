@@ -56,6 +56,7 @@ router.get('/attendance-form/:id', function(req, res, next) {
     
     });
     router.post('/data-for-attendance', function(req, res, next) {
+    let obj={}
      console.log(req.session.teacherId);
      console.log(req.body.year.length);
     let l=req.body.year.length
@@ -65,11 +66,22 @@ router.get('/attendance-form/:id', function(req, res, next) {
     console.log(parseInt(newStr));
     let year=parseInt(newStr)
     teacher.selectSubject(year,sec,req.session.teacherId).then((d)=>{
+     obj={
+      subjectName:d[0].name,
+      subjectId:d[0]._id,
+      c:d[0].year+d[0].section
+     }
+
       console.log("CLASS ID #######");
       console.log(d[0].classID);
       teacher.selectClass(d[0].classID).then((f)=>{
         console.log(f);
-        res.render('attendance-sheet.hbs')
+        teacher.nameAndRegTaker(f).then((sheet)=>{
+          res.render('attendance-sheet.hbs',{d:obj,students:sheet})
+
+        })
+
+       
 
       })
 

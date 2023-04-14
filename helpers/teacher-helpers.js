@@ -83,6 +83,34 @@ module.exports={
 
 
     },
+
+    nameAndRegTaker:(reg)=>{
+        let sheet=[]
+        return new Promise(async(resolve,reject)=>{
+           
+           for (let i = 0; i < reg.length; i++) 
+           {
+            await db.get().collection(collection.STUDENT_DATA).findOne({"regNo" : reg[i]}).then((c)=>
+            {
+            console.log("#############");
+            console.log(c);
+            let a={
+                Name:c.name,
+                Reg:c.regNo
+            } 
+            sheet.push(a)
+            
+            })
+    
+        
+            
+           }
+           console.log(sheet);
+           resolve(sheet)
+        })
+
+
+    },
     
 
 
