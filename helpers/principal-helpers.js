@@ -321,7 +321,30 @@ module.exports={
                 })
 
 
-            }
+            },
+
+            appointChangeTeacher:(subject,teacherId)=>{
+                return new Promise(async(resolve,reject)=>{
+      
+                    await db.get().collection(collection.SUBJECTS).updateOne({_id:ObjectId(subject)}, {
+                        $set:{
+                            "teacherId":teacherId
+                        }
+                    }).
+                    then((response)=>
+                        {
+                        console.log(response);
+                        resolve(response)
+                        })
+                        
+                    
+                    
+                })
+
+
+            },
+            
+            
 
            
 

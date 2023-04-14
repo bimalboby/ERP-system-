@@ -40,6 +40,21 @@ module.exports={
             })
         })
 
+    },
+    getClass:(id)=>{
+        return new Promise(async(resolve,reject)=>{
+            let classIds=[]
+            await db.get().collection(collection.SUBJECTS).find({ "teacherId" : id}).toArray().then((c)=>
+            {
+             console.log(c);
+             for (let i = 0; i < c.length; i++) {
+                classIds.push(c[i].year + c[i].section)
+                
+             }
+             console.log(classIds);
+            resolve(classIds)
+            })
+        })
     }
 
 }

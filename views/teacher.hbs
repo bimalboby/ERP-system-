@@ -9,6 +9,8 @@
 
 	<title>Dashboard </title>
 
+
+
 </head>
 <body>
   
@@ -140,7 +142,7 @@
 					<a href="#" class="active">
 						<i class='bx bxs-dashboard icon' ></i> Upload Marks
 					</a>
-					  <a href="/teacher/attendance-form" class="active">
+					  <a href="/teacher/attendance-form/{{d._id}}" class="active">
 						<i class='bx bxs-dashboard icon' ></i> Submit Attendance
 					</a>
 	
@@ -180,6 +182,7 @@
 	 <div class="content-start transition">
 		<div class="container-fluid dashboard">
 			<div class="content-header">
+				   <p>Welcome {{d.name}} ,</p> 
 				<h1>Dashboard</h1>
 				<p></p>
 			</div>

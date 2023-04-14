@@ -95,7 +95,7 @@
 		</div>
 	</div>
 
-<!--Sidebar-->
+	<!--Sidebar-->
 	<div class="sidebar transition overlay-scrollbars animate__animated  animate__slideInLeft">
         <div class="sidebar-content"> 
         	<div id="sidebar">
@@ -118,7 +118,7 @@
 						<i class='bx bx-chevron-right icon-right' ></i>
 					</a>
 
-					 <a href="/principal/view-teachers">
+					 <a href="#">
 						<i class='bx bx-columns icon' ></i> 
 						View-Teachers
 						<i class='bx bx-chevron-right icon-right' ></i>
@@ -150,11 +150,8 @@
 						<i class='bx bxs-dashboard icon' ></i> Add Teacher
 					</a>
 	
-						  <a href="/principal/create-class-form" class="active">
+						  <a href="#" class="active">
 						<i class='bx bxs-dashboard icon' ></i> Create Class
-					</a>
-					  <a href="/principal/add-subject-form" class="active">
-						<i class='bx bxs-dashboard icon' ></i> Create subject
 					</a>
 		
 				</li>
@@ -180,7 +177,6 @@
 	</div><!-- End Sidebar-->
 
 
-
 	<div class="sidebar-overlay"></div>
 
 
@@ -194,7 +190,7 @@
 				<div class="col-md-12">
 					<div class="card">
 						<div class="card-header">
-							<h4>Students</h4>
+							<h4>Select Teacher</h4>
 						</div>
 						<div class="card-body"> 
 						<div class="table-responsive"> 
@@ -203,24 +199,26 @@
 
 							  <tr>
 								<th scope="col">Reg NO</th>
-								<th scope="col">Class</th>
-								<th scope="col">Year</th>
+								<th scope="col">Subject</th>
+								<th scope="col">ph</th>
 								<th scope="col">Name</th>
-                                	<th scope="col">View Details</th>
+                                
+                                          	<th scope="col">Select </th>
+
 
 								
 							  </tr>
 							</thead>
 							<tbody>
-                                {{#each students}}
+                                {{#each teachers}}
 							  <tr>
 								<th scope="row">{{this.regNo}}	</th>
-								<td>{{this.class}}</td>
-								<td>{{this.year}}</td>
+								<td>{{this.subjects}}</td>
+								<td>{{this.ph}}</td>
                                 	<td>{{this.name}}</td>
 					
 							
-								<td><button class="btn btn-primary">View Details</button></td>
+								<td><a href="http://localhost:3000/principal/appointed?id={{../id}}&teacherId={{this._id}}" ><button class="btn btn-success">Select</button></a></td>
 							  </tr>
                               {{/each}}
 

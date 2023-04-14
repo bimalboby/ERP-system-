@@ -198,8 +198,7 @@
 	<div class="content-start transition  "> 
 		<div class="container-fluid dashboard">
 			<div class="content-header">
-				<br>
-				<br>
+			\
 			<center><h1>Add subject</h1></center>
 						<br>
 	
@@ -271,27 +270,30 @@
       <th scope="col">Section</th>
       <th scope="col">Subject</th>
       <th scope="col">Teacher</th>
+	    <th scope="col">Assign/Change</th>
     </tr>
   </thead>
 
   <tbody>
+	{{#each d}}
 
     <tr>
    
-      <td>sfd</td>
-	     
-			<td>fgd</td>
-			<td>
-			
-				 			<a href="/principal/teacher-subject/"><button type="button"  class="btn btn-success">Appoint</button></a> 
+      <td>{{year}}</td>
+	  <td>{{section}}</td>
+	   <td>{{name}}</td>
+	   <td>{{teacherId}}</td>
+	   <td>{{#if teacherId}}
+	       <a href="/principal/teacher-subject-change/{{_id}}"><button type="button"  class="btn btn-primary">Change</button></a> 
+       
+         {{else}}
+		 
+		     <a href="/principal/teacher-subject-appoint/{{_id}}"><button type="button"  class="btn btn-success">Appoint</button></a> 
+		 {{/if}}     
+	   </td>
+	</tr>
 
-
-				
-				
-				 </td>
-			
-    </tr>
- 
+  {{/each}}
       
 
    
@@ -302,6 +304,7 @@
                 </div>
             </div>
 </center>
+
 
 
             {{!-- <div class="col-12 col-md-6 col-lg-6">

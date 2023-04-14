@@ -140,6 +140,40 @@ router.post('/login', function(req, res, next) {
    res.render('add-subject.hbs')
   });
 
+
+  router.get('/teacher-subject-appoint/:id', function(req, res, next) {
+     console.log(req.params.id);
+ 
+     principal.getAllTeachersWithoutClass().then((data)=>{
+        res.render('appoint-change-teachers.hbs',{teachers:data,id:req.params.id})
+
+     })
+    });
+    router.get('/teacher-subject-change/:id', function(req, res, next) {
+        console.log(req.params.id);
+    
+        principal.getAllTeachersWithoutClass().then((data)=>{
+           res.render('appoint-change-teachers.hbs',{teachers:data,id:req.params.id})
+   
+        })
+       });
+
+    router.get('/appointed', function(req, res, next) {
+        console.log(req.query.id);
+        console.log(req.query.teacherId);
+        principal.appointChangeTeacher(req.query.id,req.query.teacherId).then((d)=>{
+            console.log("done");
+            principal.getAssignTeacherData().then((data)=>{
+
+                res.render('add-subject.hbs',{d:data})
+        
+            })
+
+        })
+    
+       });
+   
+     
   
 
 

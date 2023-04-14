@@ -16,11 +16,12 @@ res.render('teacher-login.hbs')
     console.log(req.body);
 teacher.doLogin(req.body).then((r)=>{
   console.log(r);
+  console.log(r.tec[0]);
   if(r.status===true)
   {
       console.log("SUCCESS");
    
-      res.render('teacher.hbs')
+      res.render('teacher.hbs',{d:r.tec[0]})
   }else
   {
       console.log("LOGIN FAILED");
@@ -41,9 +42,15 @@ router.get('/view-students', function(req, res, next) {
   
     
     });
-router.get('/attendance-form', function(req, res, next) {
+router.get('/attendance-form/:id', function(req, res, next) {
+  console.log(req.params.id);
 
-  res.render('attendance-form.hbs')
+   teacher.getClass(req.params.id).then((data)=>{
+    console.log(data);
+    res.render('attendance-form.hbs',{d:data})
+
+   })
+
     
     });
     router.post('/data-for-attendance', function(req, res, next) {
