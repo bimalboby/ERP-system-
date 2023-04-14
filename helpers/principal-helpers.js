@@ -269,6 +269,7 @@ module.exports={
                 return new Promise(async(resolve,reject)=>{
                     let classRooms=[]
                     let sections=[]
+                    let dataObj=[]
                     let obj
                                   
                     await db.get().collection(collection.CLASS).find({ year : parseInt(data.year)}).toArray().then((classData)=>
@@ -279,12 +280,22 @@ module.exports={
                             sections.push(classData[i].section)
                             
                         }
+                        for (let j = 0; j < classRooms.length; j++) {
+                        
+                            let d={
+                                classID :classRooms[j],
+                                section:sections[j],
+                                teacherId:false
+                            }
+                            dataObj.push(d)
+                            
+                            
+                            
+                        }
                          obj={
                             name:data.name,
                             year:parseInt(data.year),
-                            classID:classRooms,
-                            section:sections,
-                            teacherId:"null"
+                            data:dataObj
     
     
                         }
