@@ -130,6 +130,11 @@ module.exports={
             })
             },
     createClass:(data)=>{
+        let s=[]
+        for (let i = 0; i < data.students.length; i++) {
+            s.push(parseInt(data.students[i]))
+            
+        }
         return new Promise(async(resolve,reject)=>{
         let rnumber=Math.floor(Math.random() * 9000)+1000;
         let obj=
@@ -138,7 +143,7 @@ module.exports={
             teacherID:parseInt(data.teacher),
             year:parseInt(data.year),
             section:data.section,
-            studentsID:parseInt(data.students)
+            studentsID:s
         }
         db.get().collection(collection.CLASS).insertOne(obj).then((data)=>{
 

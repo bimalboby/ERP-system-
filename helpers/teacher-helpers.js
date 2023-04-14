@@ -55,6 +55,35 @@ module.exports={
             resolve(classIds)
             })
         })
-    }
+    },
+    selectSubject:(y,sec,tId)=>{
+        
+        return new Promise(async(resolve,reject)=>{
+           
+            await db.get().collection(collection.SUBJECTS).find({ "teacherId" : tId, "section" :sec,"year":y}).toArray().then((c)=>
+            {
+             console.log(c);
+             
+            resolve(c)
+            })
+        })
+    
+    },
+
+    selectClass:(cId)=>{
+        return new Promise(async(resolve,reject)=>{
+           
+            await db.get().collection(collection.CLASS).find({ "classID" : cId}).toArray().then((c)=>
+            {
+             console.log(c[0].studentsID);
+             
+            resolve(c[0].studentsID)
+            })
+        })
+
+
+    },
+    
+
 
 }

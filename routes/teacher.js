@@ -20,7 +20,7 @@ teacher.doLogin(req.body).then((r)=>{
   if(r.status===true)
   {
       console.log("SUCCESS");
-   
+      req.session.teacherId=r.tec[0]._id
       res.render('teacher.hbs',{d:r.tec[0]})
   }else
   {
@@ -44,8 +44,10 @@ router.get('/view-students', function(req, res, next) {
     });
 router.get('/attendance-form/:id', function(req, res, next) {
   console.log(req.params.id);
+  console.log("####");
+  console.log(req.session.teacherId);
 
-   teacher.getClass(req.params.id).then((data)=>{
+   teacher.getClass(req.session.teacherId).then((data)=>{
     console.log(data);
     res.render('attendance-form.hbs',{d:data})
 
@@ -54,8 +56,26 @@ router.get('/attendance-form/:id', function(req, res, next) {
     
     });
     router.post('/data-for-attendance', function(req, res, next) {
+     console.log(req.session.teacherId);
+     console.log(req.body.year.length);
+    let l=req.body.year.length
+    console.log(req.body.year[l-1]);
+    let sec=req.body.year[l-1]
+    let newStr = req.body.year.replace(sec,'')
+    console.log(parseInt(newStr));
+    let year=parseInt(newStr)
+    teacher.selectSubject(year,sec,req.session.teacherId).then((d)=>{
+      console.log("CLASS ID #######");
+      console.log(d[0].classID);
+      teacher.selectClass(d[0].classID).then((f)=>{
+        console.log(f);
+        res.render('attendance-sheet.hbs')
 
-      res.render('attendance-sheet.hbs')
+      })
+
+
+    })
+
         
         });
 
