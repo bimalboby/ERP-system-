@@ -14,18 +14,22 @@ res.render('teacher-login.hbs')
   });
   router.post('/login', function(req, res, next) {
     console.log(req.body);
-let loginStatus=teacher.doLogin(req.body)
-   if(loginStatus==true)
-   {
-       console.log("SUCCESS");
-    
-       res.render('teacher.hbs')
-   }else
-   {
-       console.log("LOGIN FAILED");
+teacher.doLogin(req.body).then((r)=>{
+  console.log(r);
+  if(r.status===true)
+  {
+      console.log("SUCCESS");
    
-   }
+      res.render('teacher.hbs')
+  }else
+  {
+      console.log("LOGIN FAILED");
+  
+  }
 
+
+})
+  
 
 });
 router.get('/view-students', function(req, res, next) {

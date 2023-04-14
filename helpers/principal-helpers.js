@@ -41,7 +41,8 @@ module.exports={
                     ph:parseInt(userData.ph),
                     genter:userData.genter,
                     address:userData.address,
-                    classTeacher:false
+                    classTeacher:false,
+                    password:userData.pass
                     /////q
     
      
@@ -135,7 +136,7 @@ module.exports={
         {
             classID:rnumber,
             teacherID:parseInt(data.teacher),
-            year:data.year,
+            year:parseInt(data.year),
             section:data.section,
             studentsID:parseInt(data.students)
         }
@@ -262,7 +263,50 @@ module.exports={
                 }
               });
                 },
-        
+
+            adddSubject:(data)=>{
+
+                return new Promise(async(resolve,reject)=>{
+                    let classRooms=[]
+                    let sections=[]
+                    let obj
+                                  
+                    await db.get().collection(collection.CLASS).find({ year : parseInt(data.year)}).toArray().then((classData)=>
+                        {
+                        console.log(classData);
+                        for (let i = 0; i < classData.length; i++) {
+                            classRooms.push(classData[i].classID)
+                            sections.push(classData[i].section)
+                            
+                        }
+                         obj={
+                            name:data.name,
+                            year:parseInt(data.year),
+                            classID:classRooms,
+                            section:sections,
+                            teacherId:"null"
+    
+    
+                        }
+                       
+                        })
+                        await db.get().collection(collection.SUBJECTS).insertOne(obj).then((response)=>
+                        {
+                        console.log(response);
+                        resolve(response)
+                        })
+                   
+                    
+                    
+                  
+                        
+                    
+                    
+                })
+
+            },
+
+           
 
 
 

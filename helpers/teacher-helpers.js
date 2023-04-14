@@ -6,17 +6,28 @@ const bcrypt=require('bcrypt')
 module.exports={
     doLogin:(userData)=>{
       
-        let status=false
-            if(userData.email=="teacher007@gmail.com"&&userData.password=="12345")
+       
+        return new Promise(async(resolve,reject)=>{
+            await db.get().collection(collection.TEACHER_DATA).find({email:userData.email,password:parseInt(userData.password)}).toArray().then((tec)=>
             {
-                status=true
-            }
-            else{
-                status=false
-    
-            }
-            
-            return status
+                
+                
+                if(tec.length>0)
+                {
+                    resolve({tec,status:true})
+                }
+              
+
+            })
+            resolve({status:false})
+
+
+            })
+
+
+
+        
+           
           
         },
     getStudensOfClass:()=>{

@@ -3,6 +3,7 @@ module.exports={
     TEACHER_DATA:'teacher',
     LEAVE:'leave',
     CLASS:'class',
+    SUBJECTS:'subjects',
  
  
 }

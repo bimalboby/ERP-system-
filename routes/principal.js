@@ -2,6 +2,7 @@
 var express = require('express');
 const { response } = require('../app');
 const principal = require('../helpers/principal-helpers');
+const { helpers } = require('handlebars');
 var router = express.Router();
 
 
@@ -70,9 +71,11 @@ router.post('/login', function(req, res, next) {
    });
    router.post('/add-teacher', function(req, res, next) {
     console.log(req.body);
+    let rnumber=Math.floor(Math.random() * 9000)+1000;
     let obj={
         subject:req.body.subject,
         name:req.body.name,
+        pass:rnumber,
         email:req.body.email,
         ph:req.body.ph,
         address:req.body.address,
@@ -80,7 +83,9 @@ router.post('/login', function(req, res, next) {
 
 
     }
-    principal.addpeople(obj,"teacher")
+    principal.addpeople(obj,"teacher").then(()=>{
+        principal.sentEmail(obj.email,"Appointed as Teacher",`Password for the login ${obj.pass}`)
+    })
    });
    router.get('/create-class-form', function(req, res, next) {
 
@@ -119,6 +124,24 @@ router.post('/login', function(req, res, next) {
  
     principal.sentEmail("bimal.boby@btech.christuniversity.in","Leave Status","Sorry..Your leave request has been Rejected")
   });
+
+  router.get('/add-subject-form', function(req, res, next) {
+   
+
+        res.render('add-subject.hbs')
+
+  
+
+   });
+
+   router.post('/add-subject', function(req, res, next) {
+  console.log(req.body);
+  principal.adddSubject(req.body)
+   res.render('add-subject.hbs')
+  });
+
+  
+
 
 
 
