@@ -126,11 +126,11 @@ router.post('/login', function(req, res, next) {
   });
 
   router.get('/add-subject-form', function(req, res, next) {
-   
+    principal.getAssignTeacherData().then((data)=>{
 
-        res.render('add-subject.hbs')
+        res.render('add-subject.hbs',{d:data})
 
-  
+    })
 
    });
 

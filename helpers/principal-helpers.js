@@ -283,6 +283,8 @@ module.exports={
                         for (let j = 0; j < classRooms.length; j++) {
                         
                             let d={
+                                name:data.name,
+                                year:parseInt(data.year),
                                 classID :classRooms[j],
                                 section:sections[j],
                                 teacherId:false
@@ -292,38 +294,48 @@ module.exports={
                             
                             
                         }
-                         obj={
-                            name:data.name,
-                            year:parseInt(data.year),
-                            data:dataObj
-    
-    
-                        }
-                       
+                    
                         })
-                        await db.get().collection(collection.SUBJECTS).insertOne(obj).then((response)=>
+                        await db.get().collection(collection.SUBJECTS).insertMany(dataObj).then((response)=>
                         {
                         console.log(response);
                         resolve(response)
                         })
                    
-                    
-                    
-                  
+                
+                })
+
+            },
+
+            getAssignTeacherData:()=>{
+                return new Promise(async(resolve,reject)=>{
+      
+                    await db.get().collection(collection.SUBJECTS).find().toArray().then((response)=>
+                        {
+                        console.log(response);
+                        resolve(response)
+                        })
                         
                     
                     
                 })
 
-            },
+
+            }
 
            
 
 
-
+ 
             
-    
-    
-           
+
+
+
+
+
+
+
+
+
 
         }
