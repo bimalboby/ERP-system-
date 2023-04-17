@@ -3,6 +3,7 @@ var express = require('express');
 const { response } = require('../app');
 const principal = require('../helpers/principal-helpers');
 const { helpers } = require('handlebars');
+var message=require('../helpers/message')
 var router = express.Router();
 
 
@@ -20,9 +21,10 @@ router.post('/login', function(req, res, next) {
             principal.viewStudents().then((students)=>{
                 principal.viewTeachers().then((teachers)=>{
                     principal.viewAllLeaves().then((l)=>{
+                        principal.viewClass().then((c)=>{
+                            res.render('principal.hbs',{classNo:c.length,students:students.length,teachers:teachers.length,leaves:l})
+                        })
         
-                    
-                    res.render('principal.hbs',{students:students.length,teachers:teachers.length,leaves:l})
                 })
 
                 })
@@ -45,9 +47,31 @@ router.post('/login', function(req, res, next) {
    });
    router.post('/add-student', function(req, res, next) {
     console.log(req.body);
+    let obj
+    let userData=req.body
+    let rnumber=Math.floor(Math.random() * 9000)+1000;
+    obj={
+        regNo:rnumber,
+        name:userData.name,
+        genter:userData.genter,
+        class:"nil",
+        year:parseInt(userData.year),
+        pass:rnumber,
+        subject:{},
+        email:userData.email,
+        ph:parseInt(userData.ph),
+        parentph:parseInt(userData.parentph),
+        fatherName:userData.fatherName,
+        motherName:userData.motherName,
+        address:userData.address,
 
-    principal.addpeople(req.body,"student")
-    res.redirect('/')
+
+    }
+    principal.addpeople(obj,"student").then((r)=>{
+        principal.sentEmail(obj.email,"Admitted to school",`Password for the login ${obj.pass}`)
+        res.redirect('/')
+    })
+
    });
    router.get('/view-students', function(req, res, next) {
     principal.viewStudents().then((data)=>{
@@ -173,7 +197,38 @@ router.post('/login', function(req, res, next) {
     
        });
    
-     
+       router.get('/sent-notification', function(req, res, next) {
+        console.log(message.MESSAGE);
+          res.render('sent-notification.hbs',{notificationMessage:message.MESSAGE})
+        });
+        router.get('/view-class', function(req, res, next) {
+            let classData=[]
+              principal.viewClass().then((data)=>{
+                
+                for (let i = 0; i < data.length; i++)
+                 {
+                   let obj={
+                    year:data[i].year,
+                    section:data[i].section,
+                    studentCount:data[i].studentsID.length
+                   }
+                   classData.push(obj)
+                    
+                }
+                console.log(classData);
+
+                res.render('view-class.hbs',{c:classData})
+
+              })
+
+            });
+
+        router.post('/sent-notification', function(req, res, next) {
+            console.log(req.body.Notification);
+            message.MESSAGE=req.body.Notification
+            res.redirect('/principal/login')
+           });
+        
   
 
 

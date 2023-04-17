@@ -9,8 +9,6 @@
 
 	<title>Dashboard </title>
 
-
-
 </head>
 <body>
   
@@ -22,6 +20,7 @@
 		</button>
 	</div>
 		<div class="menu">
+			
 				  <li class="nav-item dropdown">
 					<a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 					  <img src="assets/images/avatar/avatar-1.png" alt="">
@@ -44,7 +43,7 @@
 			
 			<!-- Logo -->
 			<div class="logo">
-					<h2 class="mb-0"> Teacher</h2>
+					<h2 class="mb-0"> Student</h2>
 			</div>
 
             <ul class="side-menu">
@@ -54,12 +53,12 @@
                 <li class="divider" data-text="STARTER">View</li>
 
                 <li>
-                    <a href="/teacher/view-students">
+                    <a href="/student/time-table">
 						<i class='bx bx-columns icon' ></i> 
-						View-Students
+						  Time Table
 						<i class='bx bx-chevron-right icon-right' ></i>
 					</a>
-                         <a href="#">
+                         <a href="/student/marksheet">
 						<i class='bx bx-columns icon' ></i> 
 						View-Marks
 						<i class='bx bx-chevron-right icon-right' ></i>
@@ -75,34 +74,17 @@
                     
 
 				<!-- Divider-->
-                <li class="divider" data-text="Atrana">Add/Edit</li>
-
-				<li>
-					 <li>
-					<a href="/teacher/upload-marks-form" class="active">
-						<i class='bx bxs-dashboard icon' ></i> Upload Marks
-					</a>
-					  <a href="/teacher/attendance-form/{{d._id}}" class="active">
-						<i class='bx bxs-dashboard icon' ></i> Submit Attendance
-					</a>
-	
-						
-		
-				</li>
+             
                 
 				 <li class="divider" data-text="Atrana">Messages</li>
 
 				<li>
 					 <li>
-					<a href="#" class="active">
-						<i class='bx bxs-dashboard icon' ></i> Sent Notifications
-					</a>
+				
 					  <a href="#" class="active">
 						<i class='bx bxs-dashboard icon' ></i> View Notifications
                         </a>
-                        <a href="/teacher/apply-leave-form" class="active">
-						<i class='bx bxs-dashboard icon' ></i> Apply leave
-					</a>
+                      
 				
 		
 				</li>
@@ -115,6 +97,8 @@
 	</div><!-- End Sidebar-->
 
 
+
+
 	<div class="sidebar-overlay"></div>
 
 
@@ -122,9 +106,76 @@
 	 <div class="content-start transition">
 		<div class="container-fluid dashboard">
 			<div class="content-header">
-				   <p>Welcome {{d.name}} ,</p> 
-				<h1>Dashboard</h1>
-				<p></p>
+				<h1>Attendance</h1>
+			
+            <table>
+        <thead>
+          <tr>
+     
+            <th>Subject</th>
+			  <th>Attendance</th>
+         
+          <tr>  
+        </thead>
+        <tbody style="color: #5A5C69 !important;">
+			{{#each d}}
+          <tr>
+            <td>{{this.subName}}</td>
+			     <td>{{this.attendance}}</td>
+				
+				  </td>
+
+          
+          </tr>
+		  {{/each}}
+         
+        </tbody>
+        <!-- footer 
+        <tfoot>
+          <tr>
+            <td colspan=3>Maximum Marks: </td>
+            <td colspan=3>Marks Obtained: </td>
+            <td colspan=2>Grade: </td>
+          </tr>
+        </tfoot> footer ends-->
+      </table>
+      <style>
+
+        body{
+  background-color: #c5cae9;
+  padding: 25px;
+  color: #070e12;
+
+
+}
+
+.container{
+  width: 720px;
+  height: 440px;
+  margin: 0 auto;
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-top: 40px;
+  border-radius: 12px;
+  background-color: #070e12;
+  font-family: Lato;
+    color: #070e12;
+}
+
+.container h2{
+  text-align: center;
+}
+
+table{
+  margin: 0 auto;
+}
+
+td, th {
+  padding: 12px;
+  border: 2px dotted;
+}
+
+      </style>
 			</div>
 			
 			<div class="row">
@@ -139,12 +190,7 @@
 				<div class="col-md-12">
 					<div class="card">
 						<div class="card-header">
-							<h4>Notifications</h4>
-							<P>{{notification}}</P>
-<hr><b><hr></b>
-<p>Scholarships for students who excel in sports, co-curricular and extra-curricular activities -
-(Undergraduate Programme Only)
-A student with a good academic record,</p>
+							
 						</div>
 						
 						  </div>

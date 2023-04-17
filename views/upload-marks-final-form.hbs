@@ -22,6 +22,8 @@
 		</button>
 	</div>
 		<div class="menu">
+			
+			 
 				  <li class="nav-item dropdown">
 					<a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 					  <img src="assets/images/avatar/avatar-1.png" alt="">
@@ -79,7 +81,7 @@
 
 				<li>
 					 <li>
-					<a href="/teacher/upload-marks-form" class="active">
+					<a href="#" class="active">
 						<i class='bx bxs-dashboard icon' ></i> Upload Marks
 					</a>
 					  <a href="/teacher/attendance-form/{{d._id}}" class="active">
@@ -114,46 +116,103 @@
 	 </div>
 	</div><!-- End Sidebar-->
 
+{{!-- CONTENT START --}}
 
-	<div class="sidebar-overlay"></div>
 
 
-	<!--Content Start-->
-	 <div class="content-start transition">
+
+<div class="content-start transition  "> 
 		<div class="container-fluid dashboard">
 			<div class="content-header">
-				   <p>Welcome {{d.name}} ,</p> 
-				<h1>Dashboard</h1>
-				<p></p>
-			</div>
-			
-			<div class="row">
-
-		
-
-				
+				<h1>Upload Marks</h1>
 				</div>
-			
-				
+            
+            <div class="row">
 
-				<div class="col-md-12">
-					<div class="card">
-						<div class="card-header">
-							<h4>Notifications</h4>
-							<P>{{notification}}</P>
-<hr><b><hr></b>
-<p>Scholarships for students who excel in sports, co-curricular and extra-curricular activities -
-(Undergraduate Programme Only)
-A student with a good academic record,</p>
+                <div class="col-12 col-md-6 col-lg-6">
+                  <div class="card">
+                  <form method="post" action="http://localhost:3000/principal/add-student">
+                      <div class="card-header">
+        
+                      </div>
+                      <div class="card-body">
+                        <div class="mb-3">
+                          <label>Student Name</label>
+                          <input type="text"  name="name" class="form-control" required="">
+                        </div>
+						  <div class="mb-3">
+                          <label>Mother Name</label>
+             				 <input type="text" name="motherName"  class="form-control">
+                        </div>
+
+						      
+						<div>
+						<label>Father Name</label>
+					   <input type="text" name="fatherName" class="form-control" >
+						</div>
+						<div>
+						<label>Address</label>
+					   <input type="text" name="address" class="form-control" >
 						</div>
 						
-						  </div>
+								<div>
+						<label>Parent Ph. No</label>
+					   <input type="number" name="parentph" class="form-control" >
 						</div>
-					</div>
-				</div>
-		   </div>
-		</div>
-	</div> 
+
+									<div>
+						<label> Ph. No</label>
+					   <input type="number" name="ph" class="form-control" >
+						</div>
+
+						<div>
+									<label>Genter</label>
+							   <select name="genter" class="form-control">
+                    <option>---</option>
+                    <option>MALE</option>
+                    <option>FEMALE</option>
+                    <option>NON-BINARY</option>
+                </select>
+						</div>
+
+							<div>
+									<label>Year</label>
+							   <select name="year" class="form-control">
+                    <option>---</option>
+                      <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                     <option>5</option>
+                    <option>5</option>
+                    <option>7</option>
+                       <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                </select>
+						</div>
+
+                        <div class="mb-3">
+                          <label>Email</label>
+                          <input type="email" class="form-control" required="">
+                        </div>
+                       
+                      </div>
+                      <div class="card-footer text-right">
+                        <button class="btn btn-primary">Submit</button>
+                      </div>
+                    </form>
+                </div>
+            </div>
+
+
+
+
+
+
+
+{{!-- END --}}
+
 
 
 	<!-- Footer -->				

@@ -9,8 +9,6 @@
 
 	<title>Dashboard </title>
 
-
-
 </head>
 <body>
   
@@ -22,6 +20,7 @@
 		</button>
 	</div>
 		<div class="menu">
+			
 				  <li class="nav-item dropdown">
 					<a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 					  <img src="assets/images/avatar/avatar-1.png" alt="">
@@ -37,14 +36,14 @@
 		</div>
 	</div>
 
-	<!--Sidebar-->
+<!--Sidebar-->
 	<div class="sidebar transition overlay-scrollbars animate__animated  animate__slideInLeft">
         <div class="sidebar-content"> 
         	<div id="sidebar">
 			
 			<!-- Logo -->
 			<div class="logo">
-					<h2 class="mb-0"> Teacher</h2>
+					<h2 class="mb-0"> Principal</h2>
 			</div>
 
             <ul class="side-menu">
@@ -54,23 +53,29 @@
                 <li class="divider" data-text="STARTER">View</li>
 
                 <li>
-                    <a href="/teacher/view-students">
+                    <a href="/principal/view-students">
 						<i class='bx bx-columns icon' ></i> 
 						View-Students
 						<i class='bx bx-chevron-right icon-right' ></i>
 					</a>
-                         <a href="#">
+
+					 <a href="/principal/view-teachers">
+						<i class='bx bx-columns icon' ></i> 
+						View-Teachers
+						<i class='bx bx-chevron-right icon-right' ></i>
+					</a>
+						 <a href="#">
+						<i class='bx bx-columns icon' ></i> 
+						View-Class
+						<i class='bx bx-chevron-right icon-right' ></i>
+					</a>
+				
+					 <a href="#">
 						<i class='bx bx-columns icon' ></i> 
 						View-Marks
 						<i class='bx bx-chevron-right icon-right' ></i>
 					</a>
-                             <a href="#">
-						<i class='bx bx-columns icon' ></i> 
-						View-Attendance
-						<i class='bx bx-chevron-right icon-right' ></i>
-					</a>
-
-
+                   
      
                     
 
@@ -79,14 +84,19 @@
 
 				<li>
 					 <li>
-					<a href="/teacher/upload-marks-form" class="active">
-						<i class='bx bxs-dashboard icon' ></i> Upload Marks
+					<a href="/principal/add-student" class="active">
+						<i class='bx bxs-dashboard icon' ></i> Add Student
 					</a>
-					  <a href="/teacher/attendance-form/{{d._id}}" class="active">
-						<i class='bx bxs-dashboard icon' ></i> Submit Attendance
+					  <a href="/principal/add-teacher-form" class="active">
+						<i class='bx bxs-dashboard icon' ></i> Add Teacher
 					</a>
 	
-						
+						  <a href="/principal/create-class-form" class="active">
+						<i class='bx bxs-dashboard icon' ></i> Create Class
+					</a>
+					  <a href="/principal/add-subject-form" class="active">
+						<i class='bx bxs-dashboard icon' ></i> Create subject
+					</a>
 		
 				</li>
                 
@@ -99,10 +109,6 @@
 					</a>
 					  <a href="#" class="active">
 						<i class='bx bxs-dashboard icon' ></i> View Notifications
-                        </a>
-                        <a href="/teacher/apply-leave-form" class="active">
-						<i class='bx bxs-dashboard icon' ></i> Apply leave
-					</a>
 				
 		
 				</li>
@@ -115,49 +121,61 @@
 	</div><!-- End Sidebar-->
 
 
+
 	<div class="sidebar-overlay"></div>
 
 
 	<!--Content Start-->
 	 <div class="content-start transition">
 		<div class="container-fluid dashboard">
-			<div class="content-header">
-				   <p>Welcome {{d.name}} ,</p> 
-				<h1>Dashboard</h1>
-				<p></p>
-			</div>
 			
-			<div class="row">
-
 		
-
-				
-				</div>
 			
-				
 
 				<div class="col-md-12">
 					<div class="card">
 						<div class="card-header">
-							<h4>Notifications</h4>
-							<P>{{notification}}</P>
-<hr><b><hr></b>
-<p>Scholarships for students who excel in sports, co-curricular and extra-curricular activities -
-(Undergraduate Programme Only)
-A student with a good academic record,</p>
+							<h4>Class</h4>
 						</div>
-						
+						<div class="card-body"> 
+						<div class="table-responsive"> 
+						<table class="table table-striped">
+							<thead>
+
+							  <tr>
+								
+								<th scope="col">Year</th>
+								<th scope="col">Section</th>
+                                	<th scope="col"> Students</th>
+
+								
+							  </tr>
+							</thead>
+							<tbody>
+                                {{#each c}}
+							  <tr>
+								<th scope="row">{{this.year}}	</th>
+								<td>{{this.section}}</td>
+								<td>{{this.studentCount}}</td>
+                    
+							  </tr>
+                              {{/each}}
+
+							 
+							</tbody>
+						  </table>
 						  </div>
 						</div>
 					</div>
 				</div>
+
 		   </div>
 		</div>
 	</div> 
 
 
 	<!-- Footer -->				
-<footer>
+	<footer>
 		<div class="footer">
 			<div class="float-start">
 				<p>2023 &copy; St Philomina</p>

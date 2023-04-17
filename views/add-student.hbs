@@ -9,16 +9,6 @@
 
 	<title>Dashboard </title>
 
-	<!-- Bootstrap CSS-->
-	<link rel="stylesheet" href="/modules/bootstrap-5.1.3/css/bootstrap.css">
-	<!-- Style CSS -->
-	<link rel="stylesheet" href="/stylesheets/style.css">
-	<!-- FontAwesome CSS-->
-	<link rel="stylesheet" href="/modules/fontawesome6.1.1/css/all.css">
-	<!-- Boxicons CSS-->
-	<link rel="stylesheet" href="/modules/boxicons/css/boxicons.min.css">
-	<!-- Apexcharts  CSS -->
-	<link rel="stylesheet" href="/modules/apexcharts/apexcharts.css">
 </head>
 <body>
   
@@ -30,65 +20,7 @@
 		</button>
 	</div>
 		<div class="menu">
-			<ul>
-				<li class="nav-item dropdown dropdown-list-toggle">
-					<a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-					   <i class="fa fa-bell size-icon-1"></i><span class="badge bg-danger notif">4</span>
-					</a> 				 
-					<div class="dropdown-menu dropdown-list">
-						<div class="dropdown-header">Notifications</div>
-						<div class="dropdown-list-content dropdown-list-icons">
-							<div class="custome-list-notif"> 
-							<a href="#" class="dropdown-item dropdown-item-unread">
-								<div class="dropdown-item-icon bg-primary text-white">
-								  <i class="fas fa-code"></i>
-								</div>
-								<div class="dropdown-item-desc">
-									The Atrana template has the latest update!
-								  <div class="time text-primary">3 Min Ago</div>
-								</div>
-							  </a>
-
-							  <a href="#" class="dropdown-item">
-								<div class="dropdown-item-icon bg-info text-white">
-								  <i class="far fa-user"></i>
-								</div>
-								<div class="dropdown-item-desc">
-								   Sri asks you for friendship!
-								  <div class="time">12 Hours Ago</div>
-								</div>
-							  </a>
-
-							  <a href="#" class="dropdown-item">
-								<div class="dropdown-item-icon bg-danger text-white">
-								  <i class="fas fa-check"></i>
-								</div>
-								<div class="dropdown-item-desc">
-									Storage has been cleared, now you can get back to work!
-								  <div class="time">20 Hours Ago</div>
-								</div>
-							  </a>
-
-						  
-							  <a href="#" class="dropdown-item">
-								<div class="dropdown-item-icon bg-info text-white">
-								  <i class="fas fa-bell"></i>
-								</div>
-								<div class="dropdown-item-desc">
-								    Welcome to Atrana Template, I hope you enjoy using this template!
-								  <div class="time">Yesterday</div>
-								</div>
-							  </a>
- 
-							</div>
-						</div>
-
-						<div class="dropdown-footer text-center">
-						  <a href="#">View All</a>
-						</div>
-
-					  
-				  </li>
+			
 			 
 				  <li class="nav-item dropdown">
 					<a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -104,7 +36,8 @@
 			</ul>
 		</div>
 	</div>
-<!--Sidebar-->
+
+	<!--Sidebar-->
 	<div class="sidebar transition overlay-scrollbars animate__animated  animate__slideInLeft">
         <div class="sidebar-content"> 
         	<div id="sidebar">
@@ -162,7 +95,7 @@
 						  <a href="/principal/create-class-form" class="active">
 						<i class='bx bxs-dashboard icon' ></i> Create Class
 					</a>
-					  <a href="/principal/create-subject" class="active">
+					  <a href="/principal/add-subject-form" class="active">
 						<i class='bx bxs-dashboard icon' ></i> Create subject
 					</a>
 		
@@ -172,13 +105,10 @@
 
 				<li>
 					 <li>
-					<a href="#" class="active">
-						<i class='bx bxs-dashboard icon' ></i> Sent Notifications
+					<a href="/principal/sent-notification" class="active">
+						<i class='bx bxs-dashboard icon' ></i>  Notifications
 					</a>
-					  <a href="#" class="active">
-						<i class='bx bxs-dashboard icon' ></i> View Notifications
-				
-		
+					
 				</li>
 
             
@@ -187,7 +117,6 @@
        </div> 
 	 </div>
 	</div><!-- End Sidebar-->
-
 
 
 	<div class="sidebar-overlay"></div>
@@ -239,7 +168,7 @@
 						</div>
 
 						<div>
-									<label>Genter</label>
+									<label>Gender</label>
 							   <select name="genter" class="form-control">
                     <option>---</option>
                     <option>MALE</option>
@@ -267,7 +196,7 @@
 
                         <div class="mb-3">
                           <label>Email</label>
-                          <input type="email" class="form-control" required="">
+                          <input type="email" name="email" class="form-control" required="">
                         </div>
                        
                       </div>
@@ -278,47 +207,7 @@
                 </div>
             </div>
 
-            {{!-- <div class="col-12 col-md-6 col-lg-6">
-                <div class="card">
-                  <form>
-                    <div class="card-header">
-                      <h4>Server-side Validation</h4>
-                    </div>
-                    <div class="card-body">
-                      <div class="mb-3">
-                        <label>Your Name</label>
-                        <input type="text" class="form-control is-valid" value="Andreews" required="">
-                        <div class="valid-feedback">
-                          Good job!
-                        </div>
-                      </div>
-                      <div class="mb-3">
-                        <label>Email</label>
-                        <input type="email" class="form-control is-invalid" required="" value="andre@atrana">
-                        <div class="invalid-feedback">
-                          Oh no! Email is invalid.
-                        </div>
-                      </div>
-                      <div class="mb-3">
-                        <label>Subject</label>
-                        <input type="email" class="form-control">
-                      </div>
-                      <div class="form-group mb-0">
-                        <label>Message</label>
-                        <textarea class="form-control is-invalid" required="">Hello!</textarea>
-                        <div class="invalid-feedback">
-                          Oh no! You entered an inappropriate word.
-                        </div>
-                      </div>
-                    </div>
-                    <div class="card-footer text-right">
-                      <button class="btn btn-primary">Submit</button>
-                    </div>
-                  </form>
-                </div>
-
-			 </div>
-            </div> --}}
+            
 
         </div><!-- End Container-->
     </div><!-- End Content-->
@@ -361,5 +250,13 @@
     <!-- Template JS File -->
 	<script src="/javascripts/script.js"></script>
 	<script src="/javascripts/custom.js"></script>
+	{{!-- <style>
+body {
+  background-image: url('data:image/jpeg;base64,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');
+  background-repeat: no-repeat;
+    background-attachment: fixed;
+  background-size: 100% 100%;
+}
+</style> --}}
  </body>
 </html>

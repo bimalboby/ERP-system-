@@ -1,9 +1,11 @@
 var db =require('../config/connection')
 var collection=require('../config/collections')
+var message=require('../helpers/message')
 const { ObjectId } = require('mongodb');
 const bcrypt=require('bcrypt')
 const { ObjectID } = require('bson')
 var nodemailer = require('nodemailer');
+
 
 module.exports={
 
@@ -51,29 +53,14 @@ module.exports={
             else if(type=="student")
             {
                 dataLocation=collection.STUDENT_DATA
-                 obj={
-                    regNo:rnumber,
-                    name:userData.name,
-                    genter:userData.genter,
-                    class:"nil",
-                    year:parseInt(userData.year),
-                    subject:{},
-                    email:userData.email,
-                    ph:parseInt(userData.ph),
-                    parentph:parseInt(userData.parentph),
-                    fatherName:userData.fatherName,
-                    motherName:userData.motherName,
-                    address:userData.address,
-    
-     
-                }
+             
             }
             else{
                 console.log("ERROR : WRONG PARAMETER TO FUNCTION ADD PEOPLE [ACCEPTED TYPE: teacher/student]");
             }
            
             console.log(obj);
-            db.get().collection(dataLocation).insertOne(obj).then((data)=>{
+            db.get().collection(dataLocation).insertOne(userData).then((data)=>{
 
                 console.log(type+'Added successflly');
                 
@@ -161,6 +148,17 @@ module.exports={
     
                     // console.log(students);
                 resolve(students)
+                })
+            })
+
+        },
+        viewClass:()=>{
+            return new Promise(async(resolve,reject)=>{
+                await db.get().collection(collection.CLASS).find().toArray().then((c)=>
+                {
+    
+                    // console.log(students);
+                resolve(c)
                 })
             })
 
@@ -292,7 +290,8 @@ module.exports={
                                 year:parseInt(data.year),
                                 classID :classRooms[j],
                                 section:sections[j],
-                                teacherId:false
+                                teacherId:false,
+                                totalAttendance:0
                             }
                             dataObj.push(d)
                             
@@ -348,8 +347,8 @@ module.exports={
 
 
             },
-            
-            
+    
+    
 
            
 

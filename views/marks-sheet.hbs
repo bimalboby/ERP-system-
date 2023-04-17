@@ -187,64 +187,26 @@
 						</div>
 						<div class="card-body"> 
 						<div class="table-responsive"> 
-						{{!-- <table class="table table-striped">
-							<thead>
-
-							  <tr>
-								<th></th>
-								<th scope="col">Name of Students</th>
-                         
-                            
-
-
-								
-							  </tr>
-							</thead>
-							<tbody>
-                                {{#each students}}
-							  <tr>
-						
-						
-                            
-                                   
-                                  <td>  <input class="form-check-input" type="checkbox"  value={{this.regNo}}  id="flexCheckDefault" name="students"/>
-                                     <label class="form-check-label" for="flexCheckDefault"></label></td>
-                                         	<td>{{this.name}}</td>
-                                  
 					
-								
-								<td><button class="btn btn-primary">View Details</button></td>
-							  </tr>
-                              {{/each}}
-
-							 
-							</tbody>
-					
-
-							
-						
-
-							 
-						
-						  </table> --}}
 
                       
 
 <table>
   <thead>
     <tr>
-      <th class="name-col">Student Name</th>
+      <th class="name-col">Reg.No                 </th>
       <th></th>
      
     </tr>
   </thead>
-    <form method="post" action="http://localhost:3000/teacher/submit-attendance">
+    <form method="post" action="http://localhost:3000/teacher/submit-marks">
   <tbody>
+    <input type="text" name="ExamName" placeholder="Enter Exam Name" ></td>
     {{#each students}}
       <tr class="student">
-      <td class="name-col" name="reg">{{this.Reg}}</td>
-       <td class="name-col" name="name">{{this.Name}}</td>
-      <td class="attend-col"  ><input type="checkbox" name="value"  value="{{this.Reg}}"></td>
+     <td class="name-col" name="name"><input type="number" name="reg" value="{{this.Reg}}" readonly></td>
+       <td class="name-col" name="name"><input type="text" name="nam" value="{{this.Name}}" readonly></td>
+      <td class="attend-col"  ><input type="number" name="marks" placeholder="Enter Mark" ></td>
      
 
     </tr>
