@@ -35,10 +35,14 @@ db.connect((err)=>{
     
   }
 })
+
 app.use('/student', student);
 app.use('/teacher',teacher);
 app.use('/principal',principal);
-
+app.get("/t",(req,res)=>
+{
+  res.send("success")
+})
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
