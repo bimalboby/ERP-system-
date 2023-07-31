@@ -4,8 +4,8 @@ const state ={
 }
 
 module.exports.connect=function(done){
-    const url='mongodb://127.0.0.1:27017'
-    const dbname='clevercode'
+    const url= "mongodb+srv://metscloudiot:RhKmiJB2qXxmJvyu@cluster0.hz77okc.mongodb.net/?retryWrites=true&w=majority";
+    const dbname='p1'
     
     mongoClient.connect(url,(err,data)=>{
         if(err) return done(err)

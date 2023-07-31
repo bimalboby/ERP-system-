@@ -245,6 +245,9 @@ module.exports={
             sentEmail:(toMail,subject,body)=>{
                 var transporter = nodemailer.createTransport({
                 service: 'gmail',
+                port: 465,
+                secure: true, // use SSL
+            
                 auth: {
                   user: 'bimalboby007@gmail.com',
                   pass: 'zgliqvavgdhnocdj'
