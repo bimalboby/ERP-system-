@@ -39,7 +39,7 @@ app.use(session({secret:"kkkklk",cookie:{maxAge:600000}}))
 app.use('/student', student);
 app.use('/teacher',teacher);
 app.use('/principal',principal);
-app.get("/t",(req,res)=>
+app.get("/",(req,res)=>
 {
   res.send("success")
 })
