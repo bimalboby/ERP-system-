@@ -4,6 +4,8 @@ const state ={
 }
 
 module.exports.connect=function(done){
+    // mongodb://localhost:27017
+   
     const url= "mongodb+srv://metscloudiot:RhKmiJB2qXxmJvyu@cluster0.hz77okc.mongodb.net/?retryWrites=true&w=majority";
     const dbname='p1'
     

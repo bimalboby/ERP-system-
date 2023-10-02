@@ -27,14 +27,14 @@ app.use(cookieParser());
 // app.use(session({secret:"key",cookie:{maxAge:600000}}))
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({secret:"kkkklk",cookie:{maxAge:600000}}))
-// db.connect((err)=>{
-//   if(err) console.log('connection failed'+err);
-//   else 
-//   {
-//     console.log('connected to database');
+db.connect((err)=>{
+  if(err) console.log('connection failed'+err);
+  else 
+  {
+    console.log('connected to database');
     
-//   }
-// })
+  }
+})
 
 app.use('/student', student);
 app.use('/teacher',teacher);
